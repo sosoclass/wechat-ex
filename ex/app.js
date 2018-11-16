@@ -15,7 +15,7 @@ const config = {
   token: 'sun0810_666'
 }
 
-app.use(async(req, res, next) => {
+app.use(async (req, res, next) => {
   // console.log(req.query);
 
   // { signature: '1f09d135ab70c9836c29bdbd679fe5fdeb48636f',
@@ -48,32 +48,34 @@ app.use(async(req, res, next) => {
     const xmlData = await getUserDataAsyne(req);
     // console.log(xmlData);
 
-    const  jsData = await parseXMLDataAsync(xmlData);
+    const jsData = await parseXMLDataAsync(xmlData);
     // console.log(jsData);
 
 
     const message = formatMessage(jsData);
-    // console.log(message);
+    console.log(message);
 
     let content = '你说嘛呢';
-    if(message.Content === '1'){
+
+    if (message.Content === '1') {
       content = '啦啦啦';
-    }else if(message.Content ==='2'){
+    } else if (message.Content === '2') {
       content = '略略略';
-    }else if(message.Content ==='3'){
+    } else if (message.Content.includes('妈')) {
       content = '哈哈哈';
     }
     let replyMessage = `<xml>
-            <ToUserName><![CDATA[${message.FromUserName}]]></ToUserName>
-            <FromUserName><![CDATA[${message.ToUserName}]]></FromUserName>
-            <CreateTime>${Date.now()}</CreateTime>
-            <MsgType><![CDATA[text]]></MsgType>
-            <Content><![CDATA[${content}]]></Content>
-          </xml>`;
+        <ToUserName><![CDATA[${message.FromUserName}]]></ToUserName>
+        <FromUserName><![CDATA[${message.ToUserName}]]></FromUserName>
+        <CreateTime>${Date.now()}</CreateTime>
+        <MsgType><![CDATA[text]]></MsgType>
+        <Content><![CDATA[${content}]]></Content>
+        </xml>`;
 
-      res.send(replyMessage);
+    res.send(replyMessage);
+    console.log(replyMessage);
 
-  }else {
+  } else {
     res.end('error')
   }
 });

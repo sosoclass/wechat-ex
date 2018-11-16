@@ -31,7 +31,7 @@ module.exports = {
     })
   },
   formatMessage({xml}){
-    let result = {}
+    let result = {};
     for (let key in xml){
       let value = xml[key];
       result[key] = value[0];
