@@ -104,8 +104,8 @@ class Wechat {
 (async () => {
   const w = new Wechat();
 
-  let result = await w.deleteMenu();
-  console.log(result);
+  // let result = await w.deleteMenu();
+  // console.log(result);
   result = await w.createMenu(require('./menu'));
   console.log(result);
 
