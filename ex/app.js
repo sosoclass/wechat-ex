@@ -3,7 +3,7 @@
  */
 const express = require('express');
 
-const handleRequest = require('./reply/handleRequest')
+const handleRequest = require('./reply/handleRequest');
 
 const app = express();
 

@@ -3,22 +3,15 @@
  */
 const sha1 = require('sha1');
 
-const {getUserDataAsyne, parseXMLDataAsync, formatMessage} = require('../utils/tools');
-const reply = require('../reply/reply');
-const template = require('../reply/template');
+const {getUserDataAsync, parseXMLDataAsync, formatMessage} = require('../utils/tools');
+const reply = require('./reply');
+const template = require('./template');
 const {token} = require('../config');
 
 module.exports = () => {
   return async (req, res, next) => {
     const {signature, echostr, timestamp, nonce} = req.query;
-    const {token} = config;
-
-
-    const arr = [timestamp, nonce, token].sort();
-    // console.log(arr);
-    const str = sha1(arr.join(''));
-    // console.log(str);
-
+    const str = sha1([timestamp, nonce, token].sort().join(''));
 
     if (req.method === 'GET') {
       if (signature === str) {
@@ -31,19 +24,16 @@ module.exports = () => {
         res.end('error');
         return;
       }
-      const xmlData = await getUserDataAsyne(req);
+      const xmlData = await getUserDataAsync(req);
       // console.log(xmlData);
 
       const jsData = await parseXMLDataAsync(xmlData);
 
       const message = formatMessage(jsData);
-
-
       const options = reply(message);
       const replyMessage = template(options);
-
+      console.log(replyMessage);
       res.send(replyMessage);
-
 
     } else {
       res.end('error')
