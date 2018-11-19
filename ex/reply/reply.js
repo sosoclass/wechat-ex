@@ -1,6 +1,8 @@
 /**
  * Created by 93659 on 2018/11/17.
  */
+
+const {url} = require('../config');
 module.exports = message => {
   let options = {
     toUserName: message.FromUserName,
@@ -25,6 +27,8 @@ module.exports = message => {
       options.picUrl = 'http://n.sinaimg.cn/sinanews/20214c6d/20181105/TiYubanner220_90.png';
       options.url = 'http://sports.sina.com.cn/';
 
+    }else if(message.Content === '4'){
+      content = `<a href="${url}/search">search页面</a>`
     }
   } else if (message.MsgType === 'voice') {
     content = `语音识别结果为: ${message.Recognition}`;

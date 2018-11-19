@@ -57,7 +57,7 @@ module.exports =  {
           "type": "location_select",
           "key": "rselfmenu_2_0"
         },
-        /*{
+        {
           "type": "media_id",
           "name": "图片",
           "media_id": "MEDIA_ID1"
@@ -66,7 +66,7 @@ module.exports =  {
           "type": "view_limited",
           "name": "图文消息",
           "media_id": "MEDIA_ID2"
-        }*/
+        }
       ]
     }
     ]

@@ -4,6 +4,6 @@
 module.exports ={
     appID: 'wx33ce7475d420b603',
     appsecret: '40c00b568599e51f929501edf357773e',
-    token: 'sun0810_666'
-
+    token: 'sun0810_666',
+    url:'http://f9048797.ngrok.io'
 }
